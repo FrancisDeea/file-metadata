@@ -1,6 +1,7 @@
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
+var multer = require('multer');
 require('dotenv').config()
 
 var app = express();
@@ -17,10 +18,8 @@ app.get('/', function (req, res) {
 // My code starts here...
 
 app.post('/api/fileanalyse', (req, res) => {
-  const file = req.body.upfile;
-
+  console.log(req.body);
   if (!file) {res.json({error: "You have not sent any file."})}
-  console.log(file);
 })
 
 // My code finishes here.
