@@ -16,10 +16,17 @@ app.get('/', function (req, res) {
 });
 
 // My code starts here...
+var upload = multer({});
 
-app.post('/api/fileanalyse', (req, res) => {
-  console.log(req.body);
-  if (!file) {res.json({error: "You have not sent any file."})}
+app.post('/api/fileanalyse', upload.single('upfile'), (req, res) => {
+  const file = req.file;
+
+  if (!file) {return res.json({error: "You have not sent any file."})};
+  return res.json({
+    name: file.originalname,
+    type: file.mimetype,
+    size: file.size
+  })
 })
 
 // My code finishes here.
